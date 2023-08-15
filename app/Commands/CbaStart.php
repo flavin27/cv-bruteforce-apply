@@ -4,43 +4,36 @@ namespace App\Commands;
 
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 
 class CbaStart extends Command
 {
-    /**
-     * The signature of the command.
-     *
-     * @var string
-     */
-    protected $signature = 'app:cba-start';
 
-    /**
-     * The description of the command.
-     *
-     * @var string
-     */
+    protected $signature = 'cba:start';
+
+
     protected $description = 'Inicia o programa';
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
+    public function handle(): void
     {
-        $option = $this->menu('Pizza menu', [
-            'Freshly baked muffins',
-            'Freshly baked croissants',
-            'Turnovers, crumb cake, cinnamon buns, scones',
-        ])->open();
-    }
+        $this->info('Iniciando o processo CBA.');
 
-    /**
-     * Define the command's schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
+        $inputFilePath = $this->ask('Digite o caminho para o arquivo de input:');
+
+        if (!File::exists($inputFilePath)) {
+             $this->error('O arquivo de input não existe.');
+
+        }
+        $emailList = File::get($inputFilePath);
+        $emails = explode("\n", $emailList);
+
+
+
+
+
+
+    }
     public function schedule(Schedule $schedule): void
     {
         // $schedule->command(static::class)->everyMinute();
