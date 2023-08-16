@@ -19,7 +19,8 @@
         "php": "^8.2",
         "laravel-zero/framework": "^10.0.2",
         "laravel-zero/installer": "^2.8",
-        "nunomaduro/termwind": "^1.15.1"
+        "nunomaduro/termwind": "^1.15.1",
+        "phpmailer/phpmailer": "^6.8"
     },
     "require-dev": {
         "laravel/pint": "^1.8",

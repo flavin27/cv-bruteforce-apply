@@ -2,10 +2,14 @@
 
 namespace App\Commands;
 
+use App\Services\MailService;
+
+use Exception;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Mail;
+
+
 
 class CbaStart extends Command
 {
@@ -15,6 +19,7 @@ class CbaStart extends Command
 
     protected $description = 'Inicia o programa';
 
+
     public function handle(): void
     {
         $this->info('Iniciando o processo CBA.');
@@ -23,10 +28,23 @@ class CbaStart extends Command
 
         if (!File::exists($inputFilePath)) {
              $this->error('O arquivo de input não existe.');
-
         }
         $emailList = File::get($inputFilePath);
         $emails = explode("\n", $emailList);
+        $email = env('EMAIL');
+        $senha = env('SENHA');
+        $service = new MailService( $email, $senha);
+
+        foreach ($emails as $email) {
+            try {
+                $service->sendEmail($email);
+            } catch (Exception $e) {
+                echo 'Erro ao enviar o email: ' . $e->getMessage();
+            }
+        }
+
+
+
 
 
 
