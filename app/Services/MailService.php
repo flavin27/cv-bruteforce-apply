@@ -18,7 +18,7 @@ class MailService
         try {
             $this->mail->isSMTP();
             $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;
-            $this->mail->Host = 'smtp.gmail.com';
+            $this->mail->Host = 'smtp-mail.outlook.com';
             $this->mail->Port = 587;
             $this->mail->SMTPSecure = 'TLS';
             $this->mail->SMTPAuth = true;
