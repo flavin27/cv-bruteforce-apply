@@ -24,7 +24,7 @@ class CbaStart extends Command
     {
         $this->info('Iniciando o processo CBA.');
 
-        $inputFilePath = $this->ask('Digite o caminho para o arquivo de input:');
+        $inputFilePath = $this->ask('Digite o caminho para o arquivo de paylaod:');
 
         if (!File::exists($inputFilePath)) {
              $this->error('O arquivo de input não existe.');

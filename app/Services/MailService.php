@@ -25,7 +25,7 @@ class MailService
             $this->mail->CharSet = 'UTF-8';
             $this->mail->Username = $email;
             $this->mail->Password = $senha;
-            $this->mail->setFrom($this->mail->Username, 'teste');
+            $this->mail->setFrom($this->mail->Username, 'Flavin');
         } catch (Exception $e) {
             echo "Erro ao configurar o MAIL: {$this->mail->ErrorInfo}";
             print_r($e);
@@ -38,8 +38,8 @@ class MailService
     public function sendEmail(string $email): void
     {
         $this->mail->addAddress($email);
-        $this->mail->Subject = 'teste';
-        $this->mail->Body    = 'teste';
+        $this->mail->Subject = 'Interesse por vaga de emprego';
+        $this->mail->Body    = "Olá, tudo bem? \n Estou muito interessado em participar do processo seletivo em uma vaga de emprego para desenvolvedor back-end na sua empresa. \n Agradeço desde já pela atenção!  ";
         if (!$this->mail->send()) {
             echo 'Mailer Error: ' . $this->mail->ErrorInfo;
         }
